@@ -29,14 +29,19 @@ int main(int argc, char *argv[]){
     return 0;
 }
 
-// got generator alg here: https://www.cuemath.com/geometry/pythagorean-triples/
+/* got generator alg here: https://www.cuemath.com/geometry/pythagorean-triples/
+ * Essentially we index each pythagorian triple by an ordered pair (m, n), where m > n
+ * The link shows the formulas used, but essentially there exists a formula in m, n that 
+ * computes a pythagorian triplet.
+ */
 long ordered_pair(){
-    
     // assune m > n
     int m = 2;
     int n = 1;
 
     // there is a cleaner way to do this, this gives me pain
+    // Iterate over the (m,n) ordered pair triangle starting with (2,1) because thats where the first 
+    // triplet comes from. Maybe start from a different seed value?
     for(m = 2; 1; ++m){
         for(n = 1; n < m; ++n){
             if(2 * m * (m + n) == add_up_to){
