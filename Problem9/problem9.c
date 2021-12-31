@@ -2,7 +2,9 @@
 #include <time.h>
 
 long brute_force();
-void print_ans(int ans[3]);
+long ordered_pair();
+
+int add_up_to = 1000;
 
 int main(int argc, char *argv[]){
     clock_t begin = clock();
@@ -13,15 +15,23 @@ int main(int argc, char *argv[]){
     double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
     
     printf("Answer: %ld\n", ans);
-    printf("Time: %lf\n", time_spent);
+    printf("Time (brute_force): %lf\n", time_spent);
+
+    begin = clock();
+
+    ans = ordered_pair();
+
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+
+    printf("Time (ordered_pair): %lf\n", time_spent);
 
     return 0;
 }
 
 // got generator alg here: https://www.cuemath.com/geometry/pythagorean-triples/
-long brute_force(){
-    int add_up_to = 1000;
-
+long ordered_pair(){
+    
     // assune m > n
     int m = 2;
     int n = 1;
@@ -39,4 +49,19 @@ long brute_force(){
     
     return -1;
     
+}
+
+long brute_force(){
+    for(int c = 0; 1; c++){
+        for(int b = 0; b < c; b++){
+            for(int a = 0; a < b; a++){
+                if(a*a + b*b == c*c){
+                    if(a + b + c == 1000){
+                        return a * b * c;
+                    }
+                }
+            }
+        }
+    }
+    return -1;
 }
